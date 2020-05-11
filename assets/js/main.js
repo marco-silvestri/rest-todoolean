@@ -1,45 +1,44 @@
 $(document).ready(function () {
 
-    /* References */
-
+    //  Refs
     var buttonSubmit = $('i.fas.fa-plus');
     var inputArea = $('.add-task');
     var list = $('.todo');
-    var btnUpdate = $('i.fas.fa-sync-alt');
+    var buttonUpdate = $('i.fas.fa-sync-alt');
     var url = 'http://157.230.17.132:3022/todos';
 
-    //Handlebars
+    //  Handlebars
     var source = $("#list__element-template").html();
     var template = Handlebars.compile(source);
 
-    //Add the note on the click of the + button
+    //  Add the note on the click of the + button
     buttonSubmit.click(function(){
-        addAPI(url, inputArea.val(), template, list);
+        addTodo(url, inputArea, template, list);
     });
 
-    // Add the new note on the hit of ENTER
+    //  Add the new note on the hit of ENTER
     inputArea.keyup(function(e){
         if (e.which == 13 || e.keyCode == 13){//13 is ENTER
-            addAPI(url, inputArea.val(), template, list);;
+            addTodo(url, inputArea, template, list);;
         }
     });
 
-    // Refresh
-    btnUpdate.click(function () { 
-        updateAPI(url,template,list);
+    //  Update
+    buttonUpdate.click(function () { 
+        updateTodos(url,template,list);
     });
 
+    //  Remove on click
     list.on('click', '.fas.fa-minus', function(){
-        removeAPI(url, $(this), template, list);
-        console.log($(this));
+        removeTodo(url, $(this), template, list);
     });
 }); //END of DOCUMENT
 
-    /****************
+    /*************
     *  Functions
-    *****************/
-
-function updateAPI(url, template, destination){
+    **************/
+//  crUd
+function updateTodos(url, template, destination){
     var settings = {
         url : url,
         method : 'GET'
@@ -52,32 +51,36 @@ function updateAPI(url, template, destination){
     });
 }
 
-function addAPI(url, input, template, destination){
+//  Crud
+function addTodo(url, input, template, destination){
     var settings = {
         url : url,
         method : 'POST',
-        data : {text : input}
+        data : {text : input.val()}
     };
     $.ajax(settings).done(function(){
-        updateAPI(url, template, destination);
+        updateTodos(url, template, destination);
+        input.val('');
     }).fail(function(error){
         console.log('Error #' + error.status);
     });
 }
 
-function removeAPI(url, self, template, destination){
+//  cRud
+function removeTodo(url, self, template, destination){
     var thisId = self.data('id');
     var settings = {
         url : url +'/'+ thisId,
         method : 'DELETE',
     };
     $.ajax(settings).done(function(){
-        updateAPI(url, template, destination);
+        updateTodos(url, template, destination);
     }).fail(function(error){
         console.log('Error #' + error.status);
     });
 }
 
+//  Print
 function printTodos(data, template, destination){
     for (var i = 0; i < data.length; i++){
         var templateData = {
