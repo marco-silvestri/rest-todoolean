@@ -1,0 +1,150 @@
+/* Reset */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* Typography */
+
+body {
+    background-color: #0b0c10;
+    color: #66FCF1;
+    font-family: 'Jost', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 56px;
+    padding-bottom: 20px;
+}
+
+.todo li {
+    color: #c5c6c7;
+}
+
+i {
+    color: #66FCF1;
+    font-size: 26px;
+    cursor: pointer;
+    opacity: .4;
+    transition: opacity .4s, color .1s;
+}
+
+i:hover {
+    opacity: 1;
+}
+
+i:active {
+    color: #c5c6c7;
+}
+
+.stroked {
+    text-decoration: line-through;
+}
+
+.no-stroke {
+    text-decoration: none;
+}
+
+/* Wrappers */
+
+.add-task {
+    color:#1f2833;
+    font-family: 'Dosis', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-task {
+    background-color: rgba(255, 255, 255, .4);
+    padding: 10px 10px;
+    margin-bottom: 30px;
+    width: 400px;
+    border: none;
+    transition: background-color .4s;
+}
+
+.add-task:focus,
+.add-task:hover {
+    background-color: rgba(102, 252, 241, 1);
+}
+
+.todo li {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    min-width: 500px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #45A29E;
+}
+
+.todo li:last-child {
+    border: none;
+}
+
+/* Footer styles */
+
+footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    background-color: #1f2833;
+}
+
+/* Templates collection */
+
+.todo-template {
+    display: none;
+}
+
+.calendar {
+    position: relative;
+    margin: 100px;
+}
+
+.calendar span {
+    color: #c5c6c7;
+}
+
+.calendar i {
+    position: absolute;
+    font-size: 84px;
+    left: -200px;
+    top: -55px;
+}
+
+.calendar__day {
+    position: absolute;
+    left: -180px;
+    top: -35px;
+    font-size: 48px;
+}
+
+.calendar__name {
+    position: absolute;
+    left: -110px;
+    top: -35px;
+    font-size: 48px;
+}
+
+.calendar__month {
+    position: absolute;
+    left: 70px;
+    top: -35px;
+    font-size: 48px;
+}

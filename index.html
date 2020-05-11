@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remember the List 2.0</title>
+    <!-- Main Style -->
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <!-- Google Font - Dosis 400 & 700 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap">
+    <!-- Font Awesome 5.13.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+</head>
+<body>
+    <main>
+        <div id="app">
+            <header>
+                <h1>Remember the List 2.0</h1>
+            </header>
+            <div class="app__input-area">
+                <input type="text" class="add-task">
+                <i class="fas fa-plus"></i>
+                <i class="fas fa-sync-alt"></i>
+            </div>
+                <ul class="todo">
+                </ul>
+
+        </div>
+    </main>
+    <footer>
+        <span>Remember the List 2.0 - Marco Silvestri &copy;2020</span>
+    </footer>
+
+    <!-- Templating -->
+    <script id="list__element-template" type="text/x-handlebars-template">
+        <li data-id="{{todoId}}">
+            <span>{{todoElement}}</span>
+            <i class="fas fa-minus"></i>
+        </li>
+    </script>
+
+    <!-- jQuery 3.5.0 Stable -->
+    <script src="assets/js/jquery-3.5.0.min.js"></script>
+    <!-- Handlebars -->
+    <script src="assets/js/handlebars.min-v4.7.6.js"></script>
+    <!-- Script -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
