@@ -5,11 +5,8 @@ $(document).ready(function () {
     var buttonSubmit = $('i.fas.fa-plus');
     var inputArea = $('.add-task');
     var list = $('.todo');
-    var dateDay = $('.calendar__day');
-    var dateName = $('.calendar__name');
-    var dateMonth = $('.calendar__month');
     var btnUpdate = $('i.fas.fa-sync-alt');
-    var btnRemove = $('i.fas.fa-minus')
+    var btnRemove = $('i.fas.fa-minus');
     
     var url = 'http://157.230.17.132:3022/todos';
 
@@ -32,14 +29,20 @@ $(document).ready(function () {
 
     // Refresh
     btnUpdate.click(function () { 
-        updateAPI(callGet,template,list);
+        updateAPI(url,template,list);
     });
+
+    $(document).on('click', btnRemove, function(){
+        removeAPI(url, $(this), template, list);
+    });
+
 
 }); //END of DOCUMENT
 
     /****************
     *  Functions
     *****************/
+
 function updateAPI(url, template, destination){
     var settings = {
         url : url,
@@ -58,6 +61,19 @@ function addAPI(url, input, template, destination){
         url : url,
         method : 'POST',
         data : {text : input}
+    };
+    $.ajax(settings).done(function(){
+        updateAPI(url, template, destination);
+    }).fail(function(error){
+        console.log('Error #' + error.status);
+    });
+}
+
+function removeAPI(url, self, template, destination){
+    var thisId = self.data('id');
+    var settings = {
+        url : url +'/'+ thisId,
+        method : 'DELETE',
     };
     $.ajax(settings).done(function(){
         updateAPI(url, template, destination);
