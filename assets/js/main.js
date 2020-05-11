@@ -6,14 +6,11 @@ $(document).ready(function () {
     var inputArea = $('.add-task');
     var list = $('.todo');
     var btnUpdate = $('i.fas.fa-sync-alt');
-    var btnRemove = $('i.fas.fa-minus');
-    
     var url = 'http://157.230.17.132:3022/todos';
 
     //Handlebars
     var source = $("#list__element-template").html();
     var template = Handlebars.compile(source);
-
 
     //Add the note on the click of the + button
     buttonSubmit.click(function(){
@@ -32,11 +29,10 @@ $(document).ready(function () {
         updateAPI(url,template,list);
     });
 
-    $(document).on('click', btnRemove, function(){
+    list.on('click', '.fas.fa-minus', function(){
         removeAPI(url, $(this), template, list);
+        console.log($(this));
     });
-
-
 }); //END of DOCUMENT
 
     /****************
